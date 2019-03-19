@@ -32,7 +32,7 @@ Then select "New Project"
 
 ![rstudio_proj1](figures/rstudio_project_new2.jpg)
 
-The select "Create Project."  Name this project "usepa_intro_r". At this point you should now have a new, empty project.  We need to download the R Script and some data that we will be using for our workshop.  Right click on each of the the links below and select "Save Link As".  In the window that opens up, browse to the location of the project and save these files to the project folder.
+The select "Create Project."  Name this project "clear_intro_r". At this point you should now have a new, empty project.  We need to download the R Script and some data that we will be using for our workshop.  Right click on each of the the links below and select "Save Link As".  In the window that opens up, browse to the location of the project and save these files to the project folder.
 
 - [NLA R Analysis](https://raw.githubusercontent.com/usepa/intro_r_workshop/master/lessons/nla_analysis.R)
 - [2007 NLA Water Quality Data](https://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv)
@@ -41,4 +41,4 @@ The select "Create Project."  Name this project "usepa_intro_r". At this point y
 
 And now we can run the script by selecting all lines (i.e. `ctrl-a`) and then clicking on the `Run` button
 
-![rstudio_knit](figures/rstudio_run.png)
+![rstudio_knit](figures/rstudio_run.jpg)
