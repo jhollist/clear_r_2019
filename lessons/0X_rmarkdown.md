@@ -146,16 +146,16 @@ knitr::kable(iris[sample(nrow(iris),10),],row.names = FALSE)
 
 | Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species    |
 |------------:|-----------:|------------:|-----------:|:----------|
-|          6.3|         2.7|          4.9|         1.8|virginica  |
-|          5.7|         2.5|          5.0|         2.0|virginica  |
-|          6.0|         3.4|          4.5|         1.6|versicolor |
-|          7.4|         2.8|          6.1|         1.9|virginica  |
-|          5.5|         4.2|          1.4|         0.2|setosa     |
-|          5.7|         3.8|          1.7|         0.3|setosa     |
-|          5.1|         3.8|          1.6|         0.2|setosa     |
-|          6.4|         2.8|          5.6|         2.2|virginica  |
-|          4.6|         3.2|          1.4|         0.2|setosa     |
-|          6.3|         2.3|          4.4|         1.3|versicolor |
+|          7.0|         3.2|          4.7|         1.4|versicolor |
+|          4.5|         2.3|          1.3|         0.3|setosa     |
+|          5.6|         2.5|          3.9|         1.1|versicolor |
+|          5.4|         3.7|          1.5|         0.2|setosa     |
+|          4.6|         3.6|          1.0|         0.2|setosa     |
+|          5.4|         3.0|          4.5|         1.5|versicolor |
+|          6.4|         3.1|          5.5|         1.8|virginica  |
+|          6.3|         2.8|          5.1|         1.5|virginica  |
+|          6.3|         3.4|          5.6|         2.4|virginica  |
+|          6.1|         2.6|          5.6|         1.4|virginica  |
 
 Once we cover data frames, the utility of doing this will hopefully become more clear.
 

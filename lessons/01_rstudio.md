@@ -26,7 +26,7 @@ Let's take some time to look around.  I'll show each of the different sections, 
 
 ### Projects
 
-Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis. I HIGHLY recommend using projects as they take care of a lot of things for you.  It is what we will be using in this workshop. To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
+Projects are a way to organize your work in RStudio.  Essentially they are folders, but with a few added files so that you can manage some options on a per project basis. I HIGHLY recommend using projects as they take care of a lot of things for you (e.g. will help manage your file paths).  It is what we will be using in this workshop. To create a new project use File:New Project, or use the drop-down on the top right of the RStudio window.  It will look like this after you select "New Project..."
 
 ![rstudio proj](figures/rstudio_proj.jpg)
 

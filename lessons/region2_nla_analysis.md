@@ -25,19 +25,20 @@ for(i in pkgs){
 ```
 
 ```
-## also installing the dependency 'hexbin'
+## also installing the dependencies 'hexbin', 'data.table'
 ```
 
 ```
 ## package 'hexbin' successfully unpacked and MD5 sums checked
+## package 'data.table' successfully unpacked and MD5 sums checked
 ## package 'plotly' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\JHollist\AppData\Local\Temp\RtmpK6fJOG\downloaded_packages
+## 	C:\Users\JHollist\AppData\Local\Temp\Rtmp8i9QSP\downloaded_packages
 ## package 'DT' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-## 	C:\Users\JHollist\AppData\Local\Temp\RtmpK6fJOG\downloaded_packages
+## 	C:\Users\JHollist\AppData\Local\Temp\Rtmp8i9QSP\downloaded_packages
 ```
 
 ```r
@@ -107,14 +108,15 @@ datatable(nla_wq)
 ```
 
 ```
-## Warning in normalizePath(path.expand(path), winslash, mustWork): path[1]=".
-## \webshot46c1fe8baf.png": The system cannot find the file specified
+## Warning in normalizePath(path.expand(path), winslash, mustWork):
+## path[1]="webshot433075273d7f.png": The system cannot find the file
+## specified
 ```
 
 ```
-## Warning in file(con, "rb"): cannot open file 'C:\Users\JHollist\AppData
-## \Local\Temp\RtmpK6fJOG\file46c6ebd2710\webshot46c1fe8baf.png': No such file
-## or directory
+## Warning in file(con, "rb"): cannot open file 'C:
+## \Users\JHollist\AppData\Local\Temp\Rtmp8i9QSP\file433029c21910\webshot433075273d7f.png':
+## No such file or directory
 ```
 
 ```
