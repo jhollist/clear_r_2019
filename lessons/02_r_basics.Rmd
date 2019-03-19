@@ -9,6 +9,10 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
+
+if(!require("sf")){
+  install.packages("sf")
+}
 library("ggplot2")
 library("dplyr")
 ```
@@ -83,14 +87,6 @@ install.packages("dplyr")
 install.packages(c("quickmapr","formatR"))
 ```
 
-Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.5.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\BLah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.5.1\etc`.  That file should have the following lines in it
-
-```
-HOME=C:/Program Files/R/R-3.5.1
-R_USER=C:/Program Files/R/R-3.5.1
-```
-
-On your next start up of R, the library path should look better!
 
 ### Using packages
 
@@ -141,18 +137,18 @@ Well, it could be interesting to do something with those values and save them fo
 
 ```{r assignment_operator}
 #Numeric assignment
-x<-5
+x <- 5
 x
-y<-x+1
+y <- x + 1
 y
-z<-x+y
+z <- x + y
 z
 #Character
-a<-"Bob"
+a <- "Bob"
 a
-b<-"Sue"
+b <- "Sue"
 b
-a2<-"Larry"
+a2 <- "Larry"
 a2
 ```
 
@@ -161,7 +157,7 @@ Now that we have a little experience working in the console and creating objects
 ```{r useful_functions_workspace, eval=FALSE}
 #List all objects in current workspace
 ls() 
-ls(pattern="a")
+ls(pattern = "a")
 
 #Remove an object
 rm(x)
@@ -170,7 +166,7 @@ rm(x)
 #Saves the whole thing to a file called lesson2.RData
 save.image("lesson2.RData") 
 #Saves just the a and y objects to a file called lesson2_ay.RData
-save(a,y,file="lesson2_ay.RData")
+save(a, y, file = "lesson2_ay.RData")
 ```
 
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
@@ -190,7 +186,7 @@ help("print") #Help on the print command
 ?print #Help on the print command using the `?` shortcut
 
 #When you know the name of the package
-help(package="dplyr") #Help on the package `dplyr`
+help(package = "dplyr") #Help on the package `dplyr`
 
 #Don't know the exact name or just part of it
 apropos("print") #Returns all available functions with "print" in the name
@@ -227,6 +223,5 @@ We should still have our `nla_analysis.R` file open.  We will be working with th
 Take a look at this file and with the person sitting next to you find the following:
 
 1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way (lines 19-24) and a straight up way (lines 29-32).  Talk through in your own words what each of these is doing
-3. Add a line of code after line 24 to install the package `lubridate`.  Add a line after line 33 to load `lubridate`.
-5. Bring up the package level help for the `lubridate` package.  What does this package do?
+2. Now find the lines on which you think we install packages.  This is the fancy way. Talk through in your own words what each of these is doing.  Change those lines to be simpler so that they just use 4 lines with calls directly to `install.packages()`
+6. Bring up the package level help for the `sf` package.  What does this package do?

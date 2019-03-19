@@ -19,7 +19,7 @@ In this lesson we are going to go over the very basics of R, cover some basic te
 
 R is a functional programming language and as such, most everything you do uses a function.
 
-The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (2990 functions, to be exact).  Some examples:
+The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.  With the base install, you will gain access to many (3473 functions, to be exact).  Some examples:
 
 
 ```r
@@ -46,21 +46,21 @@ rnorm(100,mean=10,sd=2)
 ```
 
 ```
-##   [1] 10.391215 10.841692  6.161875  9.218674  9.196072  9.974823  7.417049
-##   [8]  9.913053  9.106322  6.931043  8.294859 10.881624  7.923289 11.299838
-##  [15]  8.893035 10.569368  9.529773  9.215756 12.736659 11.242003 10.700450
-##  [22]  9.683010  9.883053  9.926537 11.164113 10.769545 10.098949  7.726807
-##  [29] 11.426956  8.225022  9.134533 10.883456 10.902513  8.788031 12.570529
-##  [36]  8.897696 10.180300  9.103949 11.904128 12.124444 13.054938 12.149116
-##  [43] 14.197274 10.240476  7.351398  5.493086  9.018260 12.255665 13.560861
-##  [50]  8.565596  9.925581  9.504538 14.391900  7.420511  6.941180 11.517019
-##  [57]  8.638058 10.106950 14.598322 11.901033  7.459391 12.325553  7.277264
-##  [64]  7.862937  7.255509 12.414340 12.558517  8.339001  7.751638  9.750364
-##  [71] 10.300119 12.513040 11.907653  9.684196  6.583479  8.167983 11.469818
-##  [78]  5.479279 11.635768 13.465854  6.543787 12.185406 10.758785  5.663642
-##  [85] 11.409628 12.343595  8.816838  9.899747 11.829165  9.815432 10.418635
-##  [92] 11.221925 11.095353 10.929100 11.585559 10.143204  7.639621  8.871733
-##  [99]  8.598971 12.643915
+##   [1] 11.763011 11.781856 12.783202  9.152271 15.098738 10.517070  6.746624
+##   [8] 11.228429  7.215442 12.225687 10.144363 10.159482  6.053013 11.745769
+##  [15] 12.620456 10.704739 11.304503  8.068533 11.424766  7.300941 10.766136
+##  [22] 10.944174 11.233409  7.736115  9.233308  8.612638 10.440079  3.945092
+##  [29]  9.901445  8.009910  7.733377  7.420673 10.488317 10.230737  7.470504
+##  [36]  9.554074  9.935758 11.740358  8.703001  9.217669 10.965229  9.240054
+##  [43]  8.824442  9.526287  9.920536 11.143761 10.881571  6.243659  7.530335
+##  [50] 11.731017 10.000808  8.058954  9.298615 10.173982  8.937625  9.872736
+##  [57] 14.574947  8.451971  8.860478 11.212564 12.302759  7.863906  7.209712
+##  [64] 11.586713  9.397301 10.998093 12.094561 10.315020 10.893891  9.290021
+##  [71]  9.069250  7.410977 12.308689  7.954088 10.170299  6.438548  9.364429
+##  [78] 11.208205 13.157767 10.410733 11.741625 10.565624 10.271133 10.492732
+##  [85] 15.618098  8.517427  8.580850  6.822896  9.509189  8.769566  6.547142
+##  [92] 10.387833  9.237856 11.518885 12.022853 10.046880  6.226145  8.403875
+##  [99]  6.154071  8.944254
 ```
 
 ```r
@@ -69,7 +69,7 @@ mean(rnorm(100))
 ```
 
 ```
-## [1] -0.1297983
+## [1] -0.05238401
 ```
 
 ```r
@@ -78,7 +78,7 @@ sum(rnorm(100))
 ```
 
 ```
-## [1] -14.31558
+## [1] -11.2346
 ```
 
 ### A few side notes 
@@ -100,7 +100,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2018-09-05, there are 12985 on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of 2019-03-19, there are 13878 on CRAN! 
 
 ### Installing packages
 
@@ -118,14 +118,6 @@ install.packages("dplyr")
 install.packages(c("quickmapr","formatR"))
 ```
 
-Now a couple of words of warning for library locations on EPA windows machines.  If R was installed correctly, your library should reside in something like `C:/Program Files/R/R-3.5.1/library`.  If you type `.libPaths()` and get a vastly different result (e.g. `Blah\Blah\Net MyDocuments\BLah`), then you are going to have some problems.  We can fix this by adding a file, `Renviron.site` to `C:\Program Files\R\R-3.5.1\etc`.  That file should have the following lines in it
-
-```
-HOME=C:/Program Files/R/R-3.5.1
-R_USER=C:/Program Files/R/R-3.5.1
-```
-
-On your next start up of R, the library path should look better!
 
 ### Using packages
 
@@ -147,7 +139,7 @@ dplyr::mutate
 ## {
 ##     UseMethod("mutate")
 ## }
-## <bytecode: 0x000002215b979570>
+## <bytecode: 0x0000021e258d8fe8>
 ## <environment: namespace:dplyr>
 ```
 
@@ -268,7 +260,7 @@ Well, it could be interesting to do something with those values and save them fo
 
 ```r
 #Numeric assignment
-x<-5
+x <- 5
 x
 ```
 
@@ -277,7 +269,7 @@ x
 ```
 
 ```r
-y<-x+1
+y <- x + 1
 y
 ```
 
@@ -286,7 +278,7 @@ y
 ```
 
 ```r
-z<-x+y
+z <- x + y
 z
 ```
 
@@ -296,7 +288,7 @@ z
 
 ```r
 #Character
-a<-"Bob"
+a <- "Bob"
 a
 ```
 
@@ -305,7 +297,7 @@ a
 ```
 
 ```r
-b<-"Sue"
+b <- "Sue"
 b
 ```
 
@@ -314,7 +306,7 @@ b
 ```
 
 ```r
-a2<-"Larry"
+a2 <- "Larry"
 a2
 ```
 
@@ -328,7 +320,7 @@ Now that we have a little experience working in the console and creating objects
 ```r
 #List all objects in current workspace
 ls() 
-ls(pattern="a")
+ls(pattern = "a")
 
 #Remove an object
 rm(x)
@@ -337,7 +329,7 @@ rm(x)
 #Saves the whole thing to a file called lesson2.RData
 save.image("lesson2.RData") 
 #Saves just the a and y objects to a file called lesson2_ay.RData
-save(a,y,file="lesson2_ay.RData")
+save(a, y, file = "lesson2_ay.RData")
 ```
 
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and argument names are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
@@ -358,7 +350,7 @@ help("print") #Help on the print command
 ?print #Help on the print command using the `?` shortcut
 
 #When you know the name of the package
-help(package="dplyr") #Help on the package `dplyr`
+help(package = "dplyr") #Help on the package `dplyr`
 
 #Don't know the exact name or just part of it
 apropos("print") #Returns all available functions with "print" in the name
@@ -395,6 +387,5 @@ We should still have our `nla_analysis.R` file open.  We will be working with th
 Take a look at this file and with the person sitting next to you find the following:
 
 1. Find the `read_csv()` function.  What lines is it on?  What is the argument?
-2. Now find the lines on which you think we install packages and load libraries.  There is the fancy way (lines 19-24) and a straight up way (lines 29-32).  Talk through in your own words what each of these is doing
-3. Add a line of code after line 24 to install the package `lubridate`.  Add a line after line 33 to load `lubridate`.
-5. Bring up the package level help for the `lubridate` package.  What does this package do?
+2. Now find the lines on which you think we install packages.  This is the fancy way. Talk through in your own words what each of these is doing.  Change those lines to be simpler so that they just use 4 lines with calls directly to `install.packages()`
+6. Bring up the package level help for the `sf` package.  What does this package do?
