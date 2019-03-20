@@ -203,3 +203,4 @@ nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
 plot(st_geometry(nla_wq_sf))
 ```
 
+While this will work well for point data, it is more likely that people will have other features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.
