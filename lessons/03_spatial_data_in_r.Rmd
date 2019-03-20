@@ -103,14 +103,14 @@ nla_wq_all
 
 ### Other ways to read in data
 
-There are many ways to read in data with R.  If you have questions about this, please let Jeff know.  He's happy to chat more about it.  Before we move on though, I will show an example of one other way we can do this.   Since Excel spreadsheets are so ubiquitous we need a reliable way to read in data stored in an excel spreadsheet.  There are a variety of packages that provide this capability, but by far the best (IMHO) is `readxl` which is part of the Tidyverse.  This is how we read in an File:
+There are many ways to read in data with R.  If you have questions about this, please let Jeff know.  He's happy to chat more about it.  Before we move on though, I will show an example of one other way we can do this.   Since Excel spreadsheets are so ubiquitous we need a reliable way to read in data stored in an excel spreadsheet.  There are a variety of packages that provide this capability, but by far the best (IMHO) is `readxl`.  This is how we read in an File:
 
 ```{r readxl}
 # You'll very likely need to install it first!!!  How'd we do that?
 # also you'll need to download the file
 # 
 library(readxl)
-gap_gdp_percap <- read_excel("nla2007_wq.xlsx")
+nla_wq_2007 <- read_excel("nla2007_wq.xlsx")
 ```
 
 This is the simplest case, but lets dig into the options to see what's possible
@@ -121,6 +121,56 @@ args(read_excel)
 
 ## Reading in spatial data
 
+We have seen multiple ways to read in tabular data into a data frame in R.  This is great but that is only one side of the coin when we are working with spatial data.  We need some special data structures to handle the wide array of spatial data types.  There are two main packages that allow us to read, write, and analyze spatial data in R, the `sf` and `raster` packages
+
+Let's dig in a bit deeper into these two packages.
+
+### sf
+The [`sf` package](http://r-spatial.github.io/sf/) provides vector data handling via the Simple Features standard, an Open Geospatial Consortium and International Standards Organization standard for spatial data. In addition, `sf` provides a tidy spatial data format that allows for manipulation with the popular `dplyr` package and when we look at these objects in R, they look a LOT like a data frame, becuase they are.  They do have a special "list column" that handles the spatial data.
+
+Getting `sf` added is no different than adding any other package that is on CRAN.
+
+```{r add_sp, eval=FALSE}
+install.packages("sf")
+library("sf")
+```
+
+### raster
+
+For our raster data processing we will use the venerable `raster` package.   
+
+To install, just do: 
+
+```{r add_raster, eval=FALSE}
+install.packages("raster")
+library("raster")
+```
+
+### rgdal and sp
+
+While we won't be using the `rgdal` and `sp` packages directly, `raster` does depend on them so I wanted to mention it breifly. The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The `sp` package has been the *de-facto* package for spatial data handling and is required for us to use the `raster` package. 
+
+As before, nothing special to get set up with `rgdal` or `sp` on windows.  Simply:
+
+```{r add_rgdal, eval=FALSE}
+install.packages("rgdal")
+library("rgdal")
+
+install.packages("sp")
+libaray("rgdal")
+```
+
+Getting set up on Linux or Mac requires more effort (i.e. need to have GDAL installed).  As this is for a USEPA audience the windows installs will work for most.  Thus, discussion of this is mostly beyond the scope of this workshop.  
+
 ## Exercise 3.1
+
+The first exercise won't be too thrilling, but we need to make sure everyone has the five packages installed. 
+
+1. Install `sf` and load `sf` into your library.
+2. Repeat, with `raster` `sp`, and `rgdal`.
+
+## Reading in data - tabular to spatial
+
+We saw this example in the original script but  
 
 
