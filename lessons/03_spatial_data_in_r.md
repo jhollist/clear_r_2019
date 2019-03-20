@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 
 # Spatial Data in R
@@ -168,7 +173,7 @@ library("sf")
 
 For our raster data processing we will use the venerable `raster` package.   
 
-To install, just do: 
+To install, do: 
 
 
 ```r
@@ -180,7 +185,7 @@ library("raster")
 
 While we won't be using the `rgdal` and `sp` packages directly, `raster` does depend on them so I wanted to mention it breifly. The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The `sp` package has been the *de-facto* package for spatial data handling and is required for us to use the `raster` package. 
 
-As before, nothing special to get set up with `rgdal` or `sp` on windows.  Simply:
+As before, nothing special to get set up with `rgdal` or `sp` on windows. 
 
 
 ```r
@@ -202,6 +207,20 @@ The first exercise won't be too thrilling, but we need to make sure everyone has
 
 ## Reading in data - tabular to spatial
 
-We saw this example in the original script but  
+We saw this example in the original script but we will show it again as it is a pretty common way for people to have spatial data.
+
+We read this in above, but to review:
+
+
+```r
+# It probably is, but make sure readr is loaded via library(readr)
+nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
+```
+
+And then we can use some `dplyr` tricks to clean this up.
+
+
+
+
 
 

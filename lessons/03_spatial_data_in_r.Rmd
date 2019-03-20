@@ -8,32 +8,36 @@ library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
                warning = FALSE, error = FALSE)
-if(!require("ggplot2")){
-  install.packages("ggplot2")
-}
-if(!require("dplyr")){
-  install.packages("dplyr")
-}
-if(!require("tidyr")){
-  install.packages("tidyr")
-}
-if(!require("sf")){
-  install.packages("sf")
-}
-if(!require("mapview")){
-  install.packages("mapview")
-}
-if(!require("raster")){
-  install.packages("raster")
-}
-library("ggplot2")
+# change these to ! %in% installed.packages
+
+#if(!require("ggplot2")){
+#  install.packages("ggplot2")
+#}
+#if(!require("dplyr")){
+#  install.packages("dplyr")
+#}
+#if(!require("tidyr")){
+#  install.packages("tidyr")
+#}
+#if(!require("sf")){
+#  install.packages("sf")
+#}
+#if(!require("mapview")){
+#  install.packages("mapview")
+#}
+#if(!require("raster")){
+#  install.packages("raster")
+#}
+
 library("raster")
+library("mapview")
+library("ggplot2")
 library("dplyr")
 library("tidyr")
 library("readr")
 library("readxl")
 library("sf")
-library("mapview")
+
 ```
 
 # Spatial Data in R
@@ -183,7 +187,7 @@ We saw this example in the original script but we will show it again as it is a 
 
 We read this in above, but to review:
 
-```{r read_in_tabmessage=FALSE}
+```{r read_in_tab, message=FALSE}
 # It probably is, but make sure readr is loaded via library(readr)
 nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
 ```
@@ -203,4 +207,24 @@ nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
 plot(st_geometry(nla_wq_sf))
 ```
 
-While this will work well for point data, it is more likely that people will have other features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.
+Now this is a more tradtional way to write this code.  Often now you will see pipes used.  A pipe in R looks like `%>%` and allows us to chain code together.  So, if we wanted to create the `nla_wq_sf` file from above with piped code, it could look like:
+
+```{r eval=FALSE}
+dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+
+nla_wq_s <- nla_wq_all %>%
+  rename_all(tolower) %>%
+  filter(site_type == "PROB_Lake",
+         visit_no == 1) %>%
+  select(site_id, lon_dd, lat_dd, chla, ntl, ptl) %>%
+  st_as_sf(coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
+```
+
+## Reading in data - spatial formats
+
+While this will work well for point data, it is more likely that people will have other features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_wbd.zip>.  Download and extract it. Then to read it in:
+
+```{r read_shape}
+ct_ri_wbd <- st_read("ct_ri_wbd.shp")
+plot(st_geometry(ct_ri_wbd))
+```
