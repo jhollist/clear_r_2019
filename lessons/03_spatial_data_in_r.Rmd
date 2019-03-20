@@ -79,11 +79,11 @@ At this point, we have:
 
 The purpose of all this was to introduce the concept of the data frame.  Moving forward we will use other tools to read in data, but the end result will be the same: a data frame with rows (i.e. observations) and columns (i.e. variables).
 
-## Reading in data
+## Reading in tabular data
 
 Completely creating a data frame from scratch is useful (especially when you start writing your own functions), but more often than not data is stored in an external file that you need to read into R.  These may be delimited text files, spreadsheets, relational databases, SAS files ...  You get the idea.  Instead of treating this subject exhaustively, we will focus just on a single file type, the `.csv` file, that is very commonly encountered and (usually) easy to create from other file types.  For this, we will use the Tidyverse way to do this and use  `read_csv()` from the `readr` pacakge.
 
-The `read_csv()` function is a re-imagined version of the base R fucntion, `read.csv()`.  This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are NOT converted to factors.  This is a big benefit to using `read_csv()` as opposed to `read.csv()`.  Additionally, `read_csv()` has some performance enhancements that make it preferrable when working with larger data sets.  In my limited experience it is about 45% faster than the base R options.  For instance a ~200 MB file with hundreds of columns and a couple hundred thousand rows took ~14 seconds to read in with `read_csv()` and about 24 seconds with `read.csv()`.  As a comparison at 45 seconds Excel had only opened 25% of the file!
+The `read_csv()` function is a re-imagined version of the base R fucntion, `read.csv()`.  This command assumes a header row with column names and that the delimiter is a comma. The expected no data value is NA and by default, strings are NOT converted to factors.  This is a big benefit to using `read_csv()` as opposed to `read.csv()`.  Additionally, `read_csv()` has some performance enhancements that make it preferrable when working with larger data sets.  In my limited experience it is about 35% faster than the base R options.  For instance a ~200 MB file with six columns and a five hundred thousand rows took ~6 seconds to read in with `read_csv()` and about 9 seconds with `read.csv()`.  As a comparison, Excel very helpfully (NOT) did not load all of the file!  My default is to use `read_csv()` since it is faster than base but also does a really good job at guessing data types (i.e. your dates will be correct!).  Now if you have a lot of data to read in then even `read_csv()` will be a bit slow.  The best option in this case is to use the `fread()` function from the `data.table` package.  It is lightning fast.  That same ~200MB took less than a second to read in!  You may, however, need to do a bit of additional formating when using `fread()` to get all your columns as you want them.
 
 Source files for `read_csv()` can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the former for our examples and exercises. If you had a file available from a URL it would be accessed like `mydf <- read.csv("https://example.com/my_cool_file.csv")`. As an aside, paths and the use of forward vs back slash is important. R is looking for forward slashes ("/"), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash ("\\\\"). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. 
 
@@ -95,7 +95,7 @@ For your convenience, it looks like:
 nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
 ```
 
-And now we can take a look at our data frame
+Run that code, and then we can take a look at our data frame:
 
 ```{r look_at}
 nla_wq_all
@@ -107,6 +107,8 @@ There are many ways to read in data with R.  If you have questions about this, p
 
 ```{r readxl}
 # You'll very likely need to install it first!!!  How'd we do that?
+# also you'll need to download the file
+# 
 library(readxl)
 gap_gdp_percap <- read_excel("nla2007_wq.xlsx")
 ```
@@ -116,7 +118,6 @@ This is the simplest case, but lets dig into the options to see what's possible
 ```{r echo = FALSE}
 args(read_excel)
 ```
-
 
 ## Reading in spatial data
 
