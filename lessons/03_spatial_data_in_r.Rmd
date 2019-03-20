@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
 library(knitr)
 options(repos="http://cran.rstudio.com/")
@@ -18,14 +23,17 @@ if(!require("sf")){
 if(!require("mapview")){
   install.packages("mapview")
 }
+if(!require("raster")){
+  install.packages("raster")
+}
 library("ggplot2")
+library("raster")
 library("dplyr")
 library("tidyr")
 library("readr")
 library("readxl")
 library("sf")
 library("mapview")
-
 ```
 
 # Spatial Data in R
@@ -139,7 +147,7 @@ library("sf")
 
 For our raster data processing we will use the venerable `raster` package.   
 
-To install, just do: 
+To install, do: 
 
 ```{r add_raster, eval=FALSE}
 install.packages("raster")
@@ -150,7 +158,7 @@ library("raster")
 
 While we won't be using the `rgdal` and `sp` packages directly, `raster` does depend on them so I wanted to mention it breifly. The `rgdal` package provides tools for reading and writing multiple spatial data formats.  It is based on the [Geospatial Data Abstraction Library (GDAL)](http://www.gdal.org/) which is a project of the Open Source Geospatial Foundation (OSGeo).  The `sp` package has been the *de-facto* package for spatial data handling and is required for us to use the `raster` package. 
 
-As before, nothing special to get set up with `rgdal` or `sp` on windows.  Simply:
+As before, nothing special to get set up with `rgdal` or `sp` on windows. 
 
 ```{r add_rgdal, eval=FALSE}
 install.packages("rgdal")
@@ -171,6 +179,27 @@ The first exercise won't be too thrilling, but we need to make sure everyone has
 
 ## Reading in data - tabular to spatial
 
-We saw this example in the original script but  
+We saw this example in the original script but we will show it again as it is a pretty common way for people to have spatial data.
 
+We read this in above, but to review:
+
+```{r read_in_tabmessage=FALSE}
+# It probably is, but make sure readr is loaded via library(readr)
+nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
+```
+
+And then we can use some `dplyr` tricks to clean this up.
+
+```{r}
+# Make sure dplyr is loaded
+# Rename columns to something Jeff approved
+nla_wq_rn <- rename_all(nla_wq_all, tolower)
+nla_wq_filt <- filter(nla_wq_rn, 
+                      site_type == "PROB_Lake",
+                      visit_no == 1)
+nla_wq_sel <- select(nla_wq_filt, site_id, lon_dd, lat_dd, chla, ntl, ptl)
+dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
+plot(st_geometry(nla_wq_sf))
+```
 

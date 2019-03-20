@@ -50,7 +50,7 @@ nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
 # select a subset of columns.
 
 nla_wq <- nla_wq_all %>%
-  rename_all(tolower) %>% #making all names lower case beucase they are a mess!
+  rename_all(tolower) %>% #making all names lower case because they are a mess!
   mutate_if(is.character, tolower) %>%
   filter(site_type == "prob_lake",
          visit_no == 1) %>%
