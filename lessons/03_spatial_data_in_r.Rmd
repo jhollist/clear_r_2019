@@ -4,26 +4,26 @@ library(knitr)
 options(repos="http://cran.rstudio.com/")
 opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE,
                warning = FALSE, error = FALSE)
-# change these to ! %in% installed.packages
 
-#if(!require("ggplot2")){
-#  install.packages("ggplot2")
-#}
-#if(!require("dplyr")){
-#  install.packages("dplyr")
-#}
-#if(!require("tidyr")){
-#  install.packages("tidyr")
-#}
-#if(!require("sf")){
-#  install.packages("sf")
-#}
-#if(!require("mapview")){
-#  install.packages("mapview")
-#}
-#if(!require("raster")){
-#  install.packages("raster")
-#}
+
+if(!requireNamespace("sf")){
+  install.packages("sf")
+}
+if(!requireNamespace("mapview")){
+  install.packages("mapview")
+}
+if(!requireNamespace("raster")){
+  install.packages("raster")
+}
+if(!requireNamespace("ggplot2")){
+  install.packages("ggplot2")
+}
+if(!requireNamespace("dplyr")){
+  install.packages("dplyr")
+}
+if(!requireNamespace("tidyr")){
+  install.packages("tidyr")
+}
 
 library("raster")
 library("mapview")
@@ -201,6 +201,11 @@ nla_wq_filt <- filter(nla_wq_rn,
 nla_wq_sel <- select(nla_wq_filt, site_id, lon_dd, lat_dd, chla, ntl, ptl)
 dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
+
+# Write it out to a shapefile
+st_write(nla_wq_sf, nla_wq)
+
+# Plot it
 plot(st_geometry(nla_wq_sf))
 ```
 
