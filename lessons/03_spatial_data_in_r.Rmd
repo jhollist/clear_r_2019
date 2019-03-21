@@ -226,7 +226,7 @@ nla_wq_s <- nla_wq_all %>%
 
 ### Vector
 
-While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_wbd.zip>.  Download and extract it. Then to read it in:
+While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a different `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_data.zip>.  Download and extract it. Then to read it in:
 
 ```{r read_shape}
 ct_ri_wbd <- st_read("ct_ri_wbd.shp")
@@ -235,10 +235,21 @@ plot(st_geometry(ct_ri_wbd))
 
 This same approach will work for nearly all vector data, with a few changes depending on the source.  For instance, if we had a file geodatabase named `nhdplus.gdb`, and it contained a layer named `waterbodies` would could access that like this:
 
-```{r gdb eval=FALSE}
+```{r gdb, eval=FALSE}
 waterbodies <- st_read(dsn = "nhdplus.gdb", layer = "waterbodies")
 ```
 
 In this example, I am explicitly specifying my arguments so that it is a bit more clear.
 
 ### Raster 
+
+We can also work with raster data in R, but will need to use the aptly named `raster` pacakge.   The data should have been extracted from the zip file we have already downloaded.
+
+```{r rast}
+# Add the raster package and read raster file in
+library(raster)
+ct_ri_dem <- raster("ct_ri_elev.tif")
+# Plot it
+plot(ct_ri_dem)
+plot(st_geometry(ct_ri_wbd), add = TRUE)
+```
