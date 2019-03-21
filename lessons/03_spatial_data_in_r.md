@@ -217,12 +217,108 @@ nla_wq_all <- read_csv("nla2007_chemical_conditionestimates_20091123.csv")
 And then we can use some `dplyr` tricks to clean this up.
 
 
+```r
+# Make sure dplyr is loaded
+# Rename columns to something Jeff approved
+nla_wq_rn <- rename_all(nla_wq_all, tolower)
+nla_wq_filt <- filter(nla_wq_rn, 
+                      site_type == "PROB_Lake",
+                      visit_no == 1)
+nla_wq_sel <- select(nla_wq_filt, site_id, lon_dd, lat_dd, chla, ntl, ptl)
+dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
+
+# Write it out to a shapefile
+st_write(nla_wq_sf, "nla_wq.shp", delete_dsn = TRUE)
+```
+
+```
+## Deleting source `nla_wq.shp' using driver `ESRI Shapefile'
+## Writing layer `nla_wq' to data source `nla_wq.shp' using driver `ESRI Shapefile'
+## features:       1033
+## fields:         4
+## geometry type:  Point
+```
+
+```r
+# Plot it
+plot(st_geometry(nla_wq_sf))
+```
+
+![plot of chunk unnamed-chunk-2](figures/unnamed-chunk-2-1.png)
+
+Now this is a more tradtional way to write this code.  Often now you will see pipes used.  A pipe in R looks like `%>%` and allows us to chain code together.  So, if we wanted to create the `nla_wq_sf` file from above with piped code, it could look like:
 
 
+```r
+# This is a data frame and does not have a coordinate reference system
+# We can use PROJ strings for this
+dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+
+nla_wq_s <- nla_wq_all %>%
+  rename_all(tolower) %>%
+  filter(site_type == "PROB_Lake",
+         visit_no == 1) %>%
+  select(site_id, lon_dd, lat_dd, chla, ntl, ptl) %>%
+  st_as_sf(coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
+```
+
+## Reading in data - spatial formats
+
+### Vector
+
+While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a different `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  
 
 
+```r
+ct_ri_wbd <- st_read("ct_ri_wbd.shp")
+```
+
+```
+## Reading layer `ct_ri_wbd' from data source `C:\Users\JHollist\OneDrive - Environmental Protection Agency (EPA)\projects\clear_r_2019\lessons\ct_ri_wbd.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 233 features and 21 fields
+## geometry type:  POLYGON
+## dimension:      XY
+## bbox:           xmin: -73.73798 ymin: 40.98519 xmax: -71.02449 ymax: 42.23397
+## epsg (SRID):    4269
+## proj4string:    +proj=longlat +datum=NAD83 +no_defs
+```
+
+```r
+plot(st_geometry(ct_ri_wbd))
+```
+
+![plot of chunk read_shape](figures/read_shape-1.png)
+
+This same approach will work for nearly all vector data, with a few changes depending on the source.  For instance, if we had a file geodatabase named `nhdplus.gdb`, and it contained a layer named `waterbodies` would could access that like this:
 
 
+```r
+waterbodies <- st_read(dsn = "nhdplus.gdb", layer = "waterbodies")
+```
+
+In this example, I am explicitly specifying my arguments so that it is a bit more clear.
+
+### Raster 
+
+We can also work with raster data in R, but will need to use the aptly named `raster` pacakge.   The data should have been extracted from the zip file we have already downloaded.
 
 
+```r
+# Add the raster package and read raster file in
+library(raster)
+ct_ri_dem <- raster("ct_ri_elev.tif")
+# Plot it
+plot(ct_ri_dem)
+plot(st_geometry(ct_ri_wbd), add = TRUE)
+```
 
+![plot of chunk rast](figures/rast-1.png)
+
+## Exercise 3.2
+
+Now lets make sure we can all read this data in to R.
+
+1. The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_data.zip>.  Download and extract it.
+2. Read in the "ct_ri_wbd.shp" file into an object named `ct_ri_wbd`
+3. Read in the "ct_ri_elev.tif" file into an object named `ct_ri_dem`

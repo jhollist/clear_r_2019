@@ -49,4 +49,6 @@ https://community.esri.com/groups/rstats
 
 shows install and R (at 10:53): https://community.esri.com/videos/3343
  - this shows how to work in R with ArcGIS mxd as source - not what we want
- - 
+
+https://highered-esricanada.github.io/r-arcgis-tutorials/1-Getting-Started.pdf
+https://esricanada-ce.github.io/r-arcgis-tutorials/

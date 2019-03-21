@@ -6,15 +6,16 @@ opts_chunk$set(fig.path="figures/",R.options=list(max.print=100),message = FALSE
                warning = FALSE, error = FALSE)
 
 
+# Still Masking...
 if(!requireNamespace("sf")){
   install.packages("sf")
 }
 if(!requireNamespace("mapview")){
   install.packages("mapview")
 }
-if(!requireNamespace("raster")){
-  install.packages("raster")
-}
+#if(!requireNamespace("raster")){
+#  install.packages("raster")
+#}
 if(!requireNamespace("ggplot2")){
   install.packages("ggplot2")
 }
@@ -25,7 +26,7 @@ if(!requireNamespace("tidyr")){
   install.packages("tidyr")
 }
 
-library("raster")
+#library("raster")
 library("mapview")
 library("ggplot2")
 library("dplyr")
@@ -203,7 +204,7 @@ dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 nla_wq_sf <- st_as_sf(nla_wq_sel, coords = c("lon_dd", "lat_dd"), crs = dd_prj4)
 
 # Write it out to a shapefile
-st_write(nla_wq_sf, nla_wq)
+st_write(nla_wq_sf, "nla_wq.shp", delete_dsn = TRUE)
 
 # Plot it
 plot(st_geometry(nla_wq_sf))

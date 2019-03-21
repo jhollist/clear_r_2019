@@ -13,9 +13,9 @@ tool_exec <- function(in_params, out_params){
   d_sel <- arc.select(d)
   
   xlm <- lm(d_sel[[y]] ~ d_sel[[x]])
-  d_sel$lm_predictions <- predict(xlm)
+  d_sel$lm_pred <- predict(xlm)
   
-  
+  arc.write(out_fc, d_sel)
   
   return(out_params)
 }
