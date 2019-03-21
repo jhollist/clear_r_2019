@@ -1,8 +1,4 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
+
 
 
 # Spatial Data in R
@@ -11,7 +7,8 @@ In this lesson we will cover the basics of spatial data in R and will do so from
 
 ## Lesson Outline
 - [Data in R: The data frame](#data-in-r-the-data-frame)
-- [Reading in data](#reading-in-data)
+- [Reading in tabular data](#reading-in-tabular-data)
+- [Reading in spatial data](#reading-in-spatial-data)
 
 ## Exercises
 - [Excercise 3.1](#exercise-31)
@@ -255,7 +252,7 @@ nla_wq_s <- nla_wq_all %>%
 
 ### Vector
 
-While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a different `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_data.zip>.  Download and extract it. Then to read it in:
+While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a different `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  
 
 
 ```r
@@ -302,3 +299,11 @@ plot(st_geometry(ct_ri_wbd), add = TRUE)
 ```
 
 ![plot of chunk rast](figures/rast-1.png)
+
+## Exercise 3.2
+
+Now lets make sure we can all read this data in to R.
+
+1. The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_data.zip>.  Download and extract it.
+2. Read in the "ct_ri_wbd.shp" file into an object named `ct_ri_wbd`
+3. Read in the "ct_ri_elev.tif" file into an object named `ct_ri_dem`
