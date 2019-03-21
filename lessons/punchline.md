@@ -26,6 +26,6 @@ The select "Create Project."  Name this project "clear_intro_r". At this point y
 
 ## Run the script
 
-And now we can run the script by selecting all lines (i.e. `ctrl-a`) and then clicking on the `Run` button
+And now we can run the script by selecting all lines (i.e. `ctrl-a`) and then clicking on the `Run` button 
 
 ![rstudio_knit](figures/rstudio_run.jpg)
