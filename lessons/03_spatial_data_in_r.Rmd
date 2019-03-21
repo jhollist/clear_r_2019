@@ -210,6 +210,8 @@ plot(st_geometry(nla_wq_sf))
 Now this is a more tradtional way to write this code.  Often now you will see pipes used.  A pipe in R looks like `%>%` and allows us to chain code together.  So, if we wanted to create the `nla_wq_sf` file from above with piped code, it could look like:
 
 ```{r eval=FALSE}
+# This is a data frame and does not have a coordinate reference system
+# We can use PROJ strings for this
 dd_prj4 <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 
 nla_wq_s <- nla_wq_all %>%
@@ -222,9 +224,21 @@ nla_wq_s <- nla_wq_all %>%
 
 ## Reading in data - spatial formats
 
-While this will work well for point data, it is more likely that people will have other features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_wbd.zip>.  Download and extract it. Then to read it in:
+### Vector
+
+While this will work well for point data, it is more likely that people will have other vector features (lines, polygons, etc.) in an existing spatial file format, such as shapefiles, geopackage, or file geodatabase.  In these cases we can use a differnt `sf` function, `st_read` to read in those files.  We will show an example here of working with a shapefile.  The shapefile is available from <https://github.com/jhollist/clear_r_2019/raw/master/lessons/ct_ri_wbd.zip>.  Download and extract it. Then to read it in:
 
 ```{r read_shape}
 ct_ri_wbd <- st_read("ct_ri_wbd.shp")
 plot(st_geometry(ct_ri_wbd))
 ```
+
+This same approach will work for nearly all vector data, with a few changes depending on the source.  For instance, if we had a file geodatabase named `nhdplus.gdb`, and it contained a layer named `waterbodies` would could access that like this:
+
+```{r gdb eval=FALSE}
+waterbodies <- st_read(dsn = "nhdplus.gdb", layer = "waterbodies")
+```
+
+In this example, I am explicitly specifying my arguments so that it is a bit more clear.
+
+### Raster 
