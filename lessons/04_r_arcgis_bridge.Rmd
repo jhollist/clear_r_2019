@@ -196,7 +196,7 @@ Hey... We did it!  We've tied R to ArcGIS and succesfully built a tool that uses
 
 ## Some links I used to learn this
 
-- ![The esri community location for the Bridge](https://community.esri.com/groups/rstats)
-- ![Good tutorials from esri Canada](https://esricanada-ce.github.io/r-arcgis-tutorials/)
-- ![Can we use ArcGIS server and the R-ArcGIS bridge together?](http://enterprise.arcgis.com/en/server/latest/publish-services/windows/deploying-r-for-arcgis-server.htm)
+- [The esri community location for the Bridge](https://community.esri.com/groups/rstats)
+- [Good tutorials from esri Canada](https://esricanada-ce.github.io/r-arcgis-tutorials/)
+- [Can we use ArcGIS server and the R-ArcGIS bridge together?](http://enterprise.arcgis.com/en/server/latest/publish-services/windows/deploying-r-for-arcgis-server.htm)
 

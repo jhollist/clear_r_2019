@@ -81,7 +81,7 @@ d
 ```
 ## dataset_type    : FeatureClass
 ## path            : nla_wq.shp 
-## fields          : FID, Shape, site_id, chla, ntl, ptl
+## fields          : FID, Shape, FID_, site_id, chla, ntl, ptl, lm_pred
 ## extent          : xmin=-124.6325, ymin=26.93623, xmax=-67.6993, ymax=48.97903
 ## geometry type   : Point
 ## WKT             : GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984"...
@@ -100,16 +100,16 @@ d_sel
 ## geometry type   : Point
 ## WKT             : GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984"...
 ## WKID            : 4326 
-##       FID       site_id  chla ntl ptl
-## 1       0 NLA06608-0001  0.24 151   6
-## 2       1 NLA06608-0002  3.84 695  36
-## 3       2 NLA06608-0003 16.96 738  43
-## 4       3 NLA06608-0004  4.60 344  18
-## 5       4 NLA06608-0005  1.21  85   4
-## ...   ...           ...   ... ... ...
-## 1031 1030 NLA06608-4828  4.62 421  24
-## 1032 1031 NLA06608-4929 38.30 954 121
-## 1033 1032 NLA06608-4949  0.00 623  82
+##       FID FID_       site_id  chla ntl ptl   lm_pred
+## 1       0    0 NLA06608-0001  0.24 151   6  3.063601
+## 2       1    1 NLA06608-0002  3.84 695  36 10.667733
+## 3       2    2 NLA06608-0003 16.96 738  43 12.021375
+## 4       3    3 NLA06608-0004  4.60 344  18  6.649365
+## 5       4    4 NLA06608-0005  1.21  85   4  2.283531
+## ...   ...  ...           ...   ... ... ...       ...
+## 1031 1030 1030 NLA06608-4828  4.62 421  24  8.101820
+## 1032 1031 1031 NLA06608-4929 38.30 954 121 23.844598
+## 1033 1032 1032 NLA06608-4949  0.00 623  82 18.465317
 ```
 
 ```r
@@ -131,16 +131,16 @@ d_sel
 ## geometry type   : Point
 ## WKT             : GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984"...
 ## WKID            : 4326 
-##       FID       site_id  chla ntl ptl   lm_pred
-## 1       0 NLA06608-0001  0.24 151   6  3.063601
-## 2       1 NLA06608-0002  3.84 695  36 10.667733
-## 3       2 NLA06608-0003 16.96 738  43 12.021375
-## 4       3 NLA06608-0004  4.60 344  18  6.649365
-## 5       4 NLA06608-0005  1.21  85   4  2.283531
-## ...   ...           ...   ... ... ...       ...
-## 1031 1030 NLA06608-4828  4.62 421  24  8.101820
-## 1032 1031 NLA06608-4929 38.30 954 121 23.844598
-## 1033 1032 NLA06608-4949  0.00 623  82 18.465317
+##       FID FID_       site_id  chla ntl ptl   lm_pred
+## 1       0    0 NLA06608-0001  0.24 151   6  3.063601
+## 2       1    1 NLA06608-0002  3.84 695  36 10.667733
+## 3       2    2 NLA06608-0003 16.96 738  43 12.021375
+## 4       3    3 NLA06608-0004  4.60 344  18  6.649365
+## 5       4    4 NLA06608-0005  1.21  85   4  2.283531
+## ...   ...  ...           ...   ... ... ...       ...
+## 1031 1030 1030 NLA06608-4828  4.62 421  24  8.101820
+## 1032 1031 1031 NLA06608-4929 38.30 954 121 23.844598
+## 1033 1032 1032 NLA06608-4949  0.00 623  82 18.465317
 ```
 
 ```r
@@ -239,7 +239,7 @@ Hey... We did it!  We've tied R to ArcGIS and succesfully built a tool that uses
 
 ## Some links I used to learn this
 
-- ![The esri community location for the Bridge](https://community.esri.com/groups/rstats)
-- ![Good tutorials from esri Canada](https://esricanada-ce.github.io/r-arcgis-tutorials/)
-- ![Can we use ArcGIS server and the R-ArcGIS bridge together?](http://enterprise.arcgis.com/en/server/latest/publish-services/windows/deploying-r-for-arcgis-server.htm)
+- [The esri community location for the Bridge](https://community.esri.com/groups/rstats)
+- [Good tutorials from esri Canada](https://esricanada-ce.github.io/r-arcgis-tutorials/)
+- [Can we use ArcGIS server and the R-ArcGIS bridge together?](http://enterprise.arcgis.com/en/server/latest/publish-services/windows/deploying-r-for-arcgis-server.htm)
 
