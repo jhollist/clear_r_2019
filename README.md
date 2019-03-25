@@ -14,8 +14,8 @@ ESRI's R-ArcGIS Bridge.  We will cover:
 - Installing and using the R-ArcGIS Bridge
 
 This workshop will be held on Tuesday, March 26, 2019 at the University of Rhode
-Island in Kingston, RI.  We will be meeting in the [Coastal Institute building in
-room 001](http://map.uri.edu/#building/28).
+Island in Kingston, RI.  We will be meeting in [Carothers Library in
+room 130](http://map.uri.edu/#building/60).
 
 # Workshop Schedule and Links to Materials
 
