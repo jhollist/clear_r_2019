@@ -34,7 +34,7 @@ Then select "New Project"
 
 The select "Create Project."  Name this project "clear_intro_r". At this point you should now have a new, empty project.  We need to download the R Script and some data that we will be using for our workshop.  Right click on each of the the links below and select "Save Link As".  In the window that opens up, browse to the location of the project and save these files to the project folder.
 
-- [NLA R Analysis](https://github.com/jhollist/clear_r_2019/blob/master/lessons/nla_analysis.R)
+- [NLA R Analysis](https://raw.githubusercontent.com/jhollist/clear_r_2019/master/lessons/nla_analysis.R)
 - [2007 NLA Water Quality Data](https://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv)
 
 ## Run the script

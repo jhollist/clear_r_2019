@@ -135,7 +135,7 @@ tool_exec <- function(in_params, out_params){
   
   arc.write(out_fc, d_sel, overwrite = TRUE)
   
-  return(out_fc)
+  return(out_params)
 }
 ```
 
